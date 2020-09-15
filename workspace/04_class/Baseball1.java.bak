@@ -1,0 +1,74 @@
+import java.util.Scanner;
+public class Baseball1 {
+	 
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int[] com = new int[3];
+		
+		while(true) { //무작위 난수가 각자리 마다 다르게 생성
+			com[0] = (int)(Math.random()*9)+1;
+			com[1] = (int)(Math.random()*9)+1;
+			com[2] = (int)(Math.random()*9)+1;
+			
+			if(com[0]!=com[1] && 
+				com[0]!=com[2] && 
+				com[1]!=com[2]  ) {
+				break;
+			}
+		}
+		//맞춰야 할 무작위 난수
+		int randomBall = com[0]*100+com[1]*10+com[2];
+		int count = 0; //시도한 횟수
+		
+		int strike = 0; //스트라이크
+		int ball = 0; //볼
+		int out = 0; //아웃
+		
+		while(true) {
+			System.out.println("게임을 실행하겠습니까(Y/N)");
+			String answer = sc.nextLine();
+			if(answer.equals("y") || answer.equals("Y")){
+			System.out.println();
+			for(;;){
+			System.out.println("게임을 시작합니다.");
+			System.out.println();
+			System.out.println("번호를 입력하세요");
+			int playball = sc.nextInt(); //콘솔창에 입력하는 값
+			count++;
+			strike = 0;
+			ball = 0;
+			out = 0;
+			
+			for(int i=2; i>=0; i--) {
+				int tempStrike = strike;
+				int tempBall = ball;
+				if(com[i]==playball%10) { //자리와 숫자가 일치하는 경우 스트라이크
+					strike++;
+				} else { //자리와 숫자가 일치하지 않는 경우 검사
+					for(int j=2; j>=0; j--) {
+						if(com[j]==playball%10) {
+							ball++;
+						}
+					}
+				}
+				if(tempStrike==strike && tempBall==ball) { //스트라이크랑 볼이 없을 경우 아웃
+					out++;
+				}
+				playball/=10; //자리 변경
+				
+			}
+			System.out.println(count + "스트라이크: "+strike+" 볼: "+ball+"아웃: "+out);
+			
+			if(strike==3) {
+				break;
+			}
+			}
+			break;
+		}
+		
+	}
+	
+}
+}
+
+

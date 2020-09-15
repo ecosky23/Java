@@ -1,0 +1,34 @@
+class SungJukDTO{
+	private int no;
+	private String name;
+	private int kor, eng, math, tot;
+	private double avg;
+
+	public void SungJukDTO(int no, String name, int kor, int eng, int math){
+		this.no = no;
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	
+	public int calcTot(){
+		tot = kor + eng + math;
+		return tot;
+	}
+	public double calcAvg(){
+		return avg = (double)tot/3;		
+	}
+	public String setName(String name){this.name = name;}
+
+	public int getNo(){return no;}
+	public String getName(){return name;}
+	public int getEng(){return eng;}
+	public int getMath(){return math;}
+	public int getTot(){return tot;}
+	public double getAvg(){return avg;}
+	
+//	@Override
+//		public String toString(){
+//		}
+}
